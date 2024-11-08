@@ -71,7 +71,7 @@ class _VideoStoryViewState extends State<VideoStoryView> {
       hasError = true;
       debugPrint('$e');
     }
-    setState(() {});
+    if(mounted) setState(() {});
   }
 
   BoxFit get fit => widget.storyItem.videoConfig?.fit ?? BoxFit.cover;
