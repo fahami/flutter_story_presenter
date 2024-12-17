@@ -12,6 +12,14 @@ class VideoUtils {
   // Singleton instance of VideoUtils.
   static final VideoUtils instance = VideoUtils._();
 
+  Future<void> preloadVideo(String url) async {
+    try {
+      await _cacheManager.downloadFile(url);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
   // Method to create a VideoPlayerController from a URL.
   // If cacheFile is true, it attempts to cache the video file.
   Future<VideoPlayerController> videoControllerFromUrl({

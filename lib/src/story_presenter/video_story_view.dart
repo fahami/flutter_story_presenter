@@ -42,6 +42,7 @@ class _VideoStoryViewState extends State<VideoStoryView> {
     try {
       final storyItem = widget.storyItem;
       if (storyItem.storyItemSource.isNetwork) {
+        await VideoUtils.instance.preloadVideo(storyItem.url!);
         // Initialize video controller for network source.
         videoPlayerController =
             await VideoUtils.instance.videoControllerFromUrl(
@@ -120,7 +121,7 @@ class _VideoStoryViewState extends State<VideoStoryView> {
                 child: VideoPlayer(videoPlayerController!),
               ),
             )
-          },
+        },
         }
       ],
     );
